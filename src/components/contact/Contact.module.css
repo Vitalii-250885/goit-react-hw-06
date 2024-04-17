@@ -1,0 +1,32 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 5px;
+  padding: 15px 10px;
+  width: 300px;
+
+  border: 2px solid #000000;
+  border-radius: 5px;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  margin-left: 10px;
+
+  font-weight: 700;
+}
+
+.number {
+  margin-left: 10px;
+}
+
+.button {
+  width: 70px;
+  height: 30px;
+}
