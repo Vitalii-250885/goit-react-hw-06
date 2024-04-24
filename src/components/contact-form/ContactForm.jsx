@@ -28,8 +28,7 @@ const ContactForm = ({ onAddContact }) => {
     <Formik
       initialValues={initialValues}
       onSubmit={onAddContact}
-      validationSchema={FormSchema}
-    >
+      validationSchema={FormSchema}>
       <Form className={css.form}>
         <div>
           <label htmlFor={nameFieldId}>Name</label>
