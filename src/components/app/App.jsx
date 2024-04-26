@@ -1,27 +1,25 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 
 import ContactForm from "../contact-form/ContactForm.jsx";
 import SearchBox from "../search-box/SearchBox.jsx";
 import ContactList from "../contact-list/ContactList.jsx";
 
-const contactsList = [
-  { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-  { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-  { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-  { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-];
-
 const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    const contactListStart = window.localStorage.getItem("contactsList");
+  const dispatch = useDispatch();
 
-    if (contactListStart !== null) {
-      return JSON.parse(contactListStart);
-    }
-    return contactsList;
-  });
-  const [inputValue, setInputValue] = useState("");
+  const contacts = useSelector((state) => state.contacts);
+
+  // const [contacts, setContacts] = useState(() => {
+  //   const contactListStart = window.localStorage.getItem("contactsList");
+
+  //   if (contactListStart !== null) {
+  //     return JSON.parse(contactListStart);
+  //   }
+  //   return contactsList;
+  // });
+  // const [inputValue, setInputValue] = useState("");
 
   const contactsJson = JSON.stringify(contacts);
 
@@ -34,14 +32,21 @@ const App = () => {
   };
 
   const handleAddContact = (values, actions) => {
-    setContacts([
-      ...contacts,
-      {
-        id: nanoid(),
-        name: values.name,
-        number: values.number,
-      },
-    ]);
+    const action = {
+      type: "contacts/addContact",
+      payload: values,
+    };
+
+    dispatch(action);
+
+    // setContacts([
+    //   ...contacts,
+    //   {
+    //     id: nanoid(),
+    //     name: values.name,
+    //     number: values.number,
+    //   },
+    // ]);
     actions.resetForm();
   };
 
